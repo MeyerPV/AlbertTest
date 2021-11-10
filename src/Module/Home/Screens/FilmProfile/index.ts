@@ -1,0 +1,1 @@
+export {FilmProfile} from './FilmProfile';
