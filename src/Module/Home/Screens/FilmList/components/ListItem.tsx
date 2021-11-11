@@ -1,9 +1,8 @@
 import {format} from 'date-fns';
 import React, {ReactElement} from 'react';
-import {GestureResponderEvent, Pressable} from 'react-native';
+import {GestureResponderEvent, Pressable, StyleSheet} from 'react-native';
 
-import {styles} from './styles';
-
+import {rem, vrem} from 'Utils/dimensions';
 import {colors} from 'Utils/constants/colors';
 import {TextWithLabel} from 'Components/text';
 import {standardDateFormat} from 'Utils/constants/date';
@@ -31,3 +30,10 @@ export function FilmListItem({onPress, title, episode_id, release_date}: ListIte
     </Pressable>
   );
 }
+
+export const styles = StyleSheet.create({
+  listItemPressable: {
+    paddingVertical: vrem(14),
+    paddingHorizontal: rem(32),
+  },
+});

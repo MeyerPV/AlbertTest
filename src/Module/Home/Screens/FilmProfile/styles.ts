@@ -13,20 +13,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     top: -TOP_SAFE_AREA,
   },
-  episodeInfoContainer: {
-    flex: 1,
-    marginHorizontal: rem(24),
-    marginBottom: vrem(16),
-    maxHeight: vrem(120),
-  },
-  episodeInfoTextViewStyle: {
-    marginVertical: vrem(6),
-    flex: 1,
-  },
-  episodeInfoTextStyle: {
-    color: colors.white,
-    fontSize: rem(24),
-  },
+
   divider: {
     marginBottom: 16,
     backgroundColor: colors.white,

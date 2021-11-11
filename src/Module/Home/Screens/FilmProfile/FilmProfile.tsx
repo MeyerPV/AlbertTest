@@ -1,23 +1,21 @@
+import {RouteProp, useRoute} from '@react-navigation/native';
 import React, {ReactElement} from 'react';
 import {Image, View} from 'react-native';
-import {RouteProp, useRoute} from '@react-navigation/native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {Divider} from 'react-native-paper';
-import {format} from 'date-fns';
 
+import {CharacterListItem, EpisodeInfo} from './components';
 import {styles} from './styles';
-import {CharacterListItem} from './components/CharacterListItem';
 
-import {findEntityId} from 'Utils/findEntityId';
-import {SafeArea} from 'Components/views';
 import DarthVaderAvatar from 'Assets/images/DarthVader.jpeg';
-import {colors} from 'Utils/constants/colors';
-import {TextWithLabel, Text} from 'Components/text';
-import {NavigationParamList} from 'Types';
+import {Text} from 'Components/text';
+import {SafeArea} from 'Components/views';
 import {HOME_NAVIGATION_ROUTES} from 'Navigation/routes.enum';
-import {useGetFilmByIdQuery} from 'Services/Films';
 import {useGetCharactersByIdsQuery} from 'Services/Characters';
-import {standardDateFormat} from 'Utils/constants/date';
+import {useGetFilmByIdQuery} from 'Services/Films';
+import {NavigationParamList} from 'Types';
+import {colors} from 'Utils/constants/colors';
+import {findEntityId} from 'Utils/findEntityId';
 
 export function FilmProfile(): ReactElement {
   const route = useRoute<RouteProp<NavigationParamList, HOME_NAVIGATION_ROUTES.FILM_PROFILE>>();
@@ -31,29 +29,7 @@ export function FilmProfile(): ReactElement {
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={DarthVaderAvatar} />
       </View>
-      <View style={styles.episodeInfoContainer}>
-        <TextWithLabel
-          viewStyle={styles.episodeInfoTextViewStyle}
-          labelStyle={styles.episodeInfoTextStyle}
-          label="Title"
-          text={data?.title}
-          textStyle={styles.episodeInfoTextStyle}
-        />
-        <TextWithLabel
-          viewStyle={styles.episodeInfoTextViewStyle}
-          labelStyle={styles.episodeInfoTextStyle}
-          label="Episode"
-          text={data?.episode_id}
-          textStyle={styles.episodeInfoTextStyle}
-        />
-        <TextWithLabel
-          viewStyle={styles.episodeInfoTextViewStyle}
-          labelStyle={styles.episodeInfoTextStyle}
-          label="Release Date"
-          text={format(new Date(data?.release_date ?? null), standardDateFormat)}
-          textStyle={styles.episodeInfoTextStyle}
-        />
-      </View>
+      <EpisodeInfo title={data?.title} episode_id={data?.episode_id} release_date={data?.release_date} />
       <Divider style={styles.divider} />
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollViewContainer}>
         <Text style={styles.charactersListHeaderText}>Characters</Text>
