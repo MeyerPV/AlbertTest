@@ -37,7 +37,7 @@ export function FilmList(): ReactElement {
         refreshing={isLoading}
         renderItem={({item, index}) => (
           <FilmListItem
-            onPress={navigateToFilmProfile(index)}
+            onPress={navigateToFilmProfile(index + 1)}
             title={item.title}
             episode_id={item.episode_id}
             release_date={item.release_date}
